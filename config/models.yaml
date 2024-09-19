@@ -1,0 +1,9 @@
+models:
+  - name: gpt4
+    class: GPT4Model
+    params:
+      api_key: YOUR_API_KEY
+  - name: llama
+    class: LlamaModel
+    params:
+      model_path: /path/to/llama/model
