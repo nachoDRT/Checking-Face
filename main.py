@@ -1,9 +1,36 @@
-from src.hfgenerator import HFGenerator
-from src.face_checkers.face_checker_factory import FaceCheckerFactory
-from src.utils import load_target_image, save_final_image
+import subprocess
+import os
+from os.path import dirname, abspath, join
+import json
+# from src.face_checkers.face_checker_factory import FaceCheckerFactory
+# from src.utils import load_target_image, save_final_image
 
+root = dirname(abspath(__file__))
+
+try:
+    blender_exe_path_keeper = join(
+        root,
+        "config",
+        "path_blender_exe.json",
+    )
+
+    with open(blender_exe_path_keeper, "r") as file:
+        data = json.load(file)
+
+    blender_exe_path = data["path"]
+
+except FileNotFoundError:
+    blender_exe_path = "blender"
+
+blend_file = join(root, "human-face_generator.blend")
+python_script = join(root, "src", "hfgenerator.py")
 
 THRESHOLD = 0.9
+
+def run_blender_script():
+    command = [blender_exe_path, blend_file, "--background", "--python", python_script]
+    subprocess.run(command)
+
 
 def main():
     face_checker = FaceCheckerFactory.get_face_checker("visual_llm")
@@ -24,7 +51,10 @@ def main():
 
     save_final_image(current_image)
 
-
+def test():
+    run_blender_script()
+    # Add any testing logic here
 
 if __name__ == "__main__":
-    main()
+    # main()
+    test()
