@@ -1,0 +1,12 @@
+debugpy
+transformers==4.49.0
+datasets
+sentencepiece
+pytorch-lightning
+wandb
+nltk
+matplotlib
+opencv-python-headless
+donut-python
+git-lfs
+accelerate>=0.26.0
