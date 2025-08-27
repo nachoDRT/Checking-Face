@@ -32,6 +32,12 @@ def run_blender_script():
     subprocess.run(command)
 
 
+def call_installer(lib_name: str):
+    python_script = join(root, "src", "installer.py")
+    command = [blender_exe_path, blend_file, "--background", "--python", python_script, "--", lib_name]
+    subprocess.run(command)
+
+
 def main():
     face_checker = FaceCheckerFactory.get_face_checker("visual_llm")
     face_checker.load()
