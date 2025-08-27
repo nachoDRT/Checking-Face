@@ -1,4 +1,5 @@
 config/path_blender_exe.json
+config/secrets.json
 
 *.pyc
 
